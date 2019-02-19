@@ -1,0 +1,46 @@
+spring:
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      default-filters: StripPrefix=1
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      httpclient:
+        connect-timeout: 30000
+        pool:
+          max-connections: 5000
+        response-timeout: 30000
+      x-forwarded:
+        enabled: false
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            allowedOrigins:
+              - '*'
+      routes:
+        - id: provider
+          predicates:
+            - Path= /provider/api/test
+          uri: lb://provider
+management:
+  server:
+    add-application-context-header: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+info:
+  name: Gateway
+  version: @project.version@
+  profile: ${spring.profiles.active}

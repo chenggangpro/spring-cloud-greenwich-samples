@@ -1,0 +1,23 @@
+server:
+    port: 8101
+spring:
+  profiles:
+    active: dev
+  application:
+    name: discover-eureka
+  security:
+    user:
+      name: username
+      password: password
+eureka:
+  instance:
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 4000
+    peer-node-read-timeout-ms: 1000 #TODO[特别注意] peer读取超时时间,默认200,当网络不好时,容易频繁报错(读取响应超时),修改为1000(1s),即可避免该问题
+  client:
+    register-with-eureka: false
+    fetch-registry: false

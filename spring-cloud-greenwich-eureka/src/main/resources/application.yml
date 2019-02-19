@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev
+management:
+  server:
+    add-application-context-header: false
+info:
+  name: Discover-Eureka
+  version: @project.version@
+  profile: ${spring.profiles.active}

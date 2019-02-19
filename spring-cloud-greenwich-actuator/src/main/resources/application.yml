@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: dev
+management:
+  server:
+    add-application-context-header: false #TODO 关闭Response中携带的Context信息
+  endpoints:  #TODO 暴露端点,SpringBoot2.0之后只暴露2个端点,配合SpringBootAdmin时需改为*,或者挑选端点暴露
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS  #TODO 健康监测显示详情策略 NEVER,WHEN_AUTHORIZED,ALWAYS
+    shutdown:
+      enabled: true
+info: #TODO 应用Info信息,用于在SpringBootAdmin页面中显示
+  name: Actuator
+  version: @project.version@
+  profile: ${spring.profiles.active}

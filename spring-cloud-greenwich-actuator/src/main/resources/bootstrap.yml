@@ -1,0 +1,34 @@
+server:
+    port: 8100
+spring:
+  profiles:
+    active: dev
+  application:
+    name: actuator
+  security: #TODO security的name和password SpringBoot2.0之后该配置发生变化,原配置已弃用
+    user:
+      name: username
+      password: password
+  boot: #TODO SpringBootAdmin2.0之后必须配置,才可生效
+    admin:
+      client: #客户端用户名密码(子服务在开启SpringBootSecurity时需配置客户端用户名密码)
+#        username: ${spring.security.user.name}
+#        password: ${spring.security.user.password}
+        instance: #eureka注册中心上的AdminServer的InstanceName(该方式无须指定ip和端口,根据InstanceName自动寻址),官方手册中为url(url中必须指定ip和端口),
+          name: actuator
+          metadata: #eurekaInstance的用户名和密码
+            user.name: ${spring.security.user.name}
+            user.password: ${spring.security.user.password}
+eureka: #TODO Eureka Instance配置
+  instance:
+    health-check-url-path: /actuator/health #新增健康检查路径,SpringBoot2.0之后actuator中的端点全部移动到/actuator/路径下
+    leaseRenewalIntervalInSeconds: 10
+    lease-expiration-duration-in-seconds: 30
+    prefer-ip-address: true
+    metadata-map: #eurekaInstance的用户名和密码
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+  client:
+    registryFetchIntervalSeconds: 5
+
+

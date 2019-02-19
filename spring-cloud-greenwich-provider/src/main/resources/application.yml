@@ -1,0 +1,45 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    name: ${spring.profiles.active}
+    url: jdbc:mysql://${mysql.ip}:${mysql.port}/steward?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+    username: ${mysql.username}
+    password: ${mysql.password}
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    #https://blog.csdn.net/qq_32953079/article/details/81502237
+    hikari:
+      connection-test-query: select 1 FROM DUAL
+      connection-timeout: 10000
+      minimum-idle: 5
+      maximum-pool-size: 100
+      max-lifetime: 60000
+      idle-timeout: 30000
+      validation-timeout: 60000
+  redis:
+    host: ${redis.host}
+    port: ${redis.port}
+    password: ${redis.password}
+    timeout: 3000
+    database: ${redis.database}
+    lettuce:
+      pool:
+        max-active: 600
+        max-idle: 300
+        min-idle: 10
+        max-wait: 1000
+management:
+  server:
+    add-application-context-header: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+info:
+  name: Provider
+  version: @project.version@
+  profile: ${spring.profiles.active}

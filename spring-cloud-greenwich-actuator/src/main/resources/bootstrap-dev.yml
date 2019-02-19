@@ -1,0 +1,19 @@
+logging:  #TODO 日志配置
+  level:
+    org.springframework: INFO
+    pro.chenggang: INFO
+  path: ../logs/${spring.application.name} #配合logback-spring.xml配置文件,指定日志文件目录
+  file:
+eureka:
+  discover1:
+    hostname: localhost
+    port: 8101
+  discover2:
+    hostname: localhost
+    port: 8102
+  discover3:
+    hostname: localhost
+    port: 8103
+  client:
+    serviceUrl: #TODO[特别注意] 此处defaultZone不能配置为default-zone,否则无法注册
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.discover1.hostname}:${eureka.discover1.port}/eureka

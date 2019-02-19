@@ -1,0 +1,18 @@
+logging:
+  level:
+    org.springframework: INFO
+    pro.chenggang: DEBUG
+  path: ../logs/${spring.application.name}
+eureka:
+  discover1:
+    hostname: localhost
+    port: 8101
+  discover2:
+    hostname: localhost
+    port: 8102
+  discover3:
+    hostname: localhost
+    port: 8103
+  client:
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.discover1.hostname}:${eureka.discover1.port}/eureka

@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: dev
+management:
+  server:
+    add-application-context-header: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+info:
+  name: Feign
+  version: @project.version@
+  profile: ${spring.profiles.active}

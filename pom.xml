@@ -15,6 +15,7 @@
         <module>spring-cloud-greenwich-eureka</module>
         <module>spring-cloud-greenwich-gateway</module>
         <module>spring-cloud-greenwich-provider</module>
+        <module>spring-cloud-greenwich-feign</module>
     </modules>
 
     <parent>

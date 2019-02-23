@@ -1,0 +1,28 @@
+logging:
+  level:
+    org.springframework: INFO
+    pro.chenggang: DEBUG
+  path: ../logs/${spring.application.name}
+eureka:
+  discover1:
+    hostname: localhost
+    port: 8101
+  discover2:
+    hostname: localhost
+    port: 8102
+  discover3:
+    hostname: localhost
+    port: 8103
+  client:
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.discover1.hostname}:${eureka.discover1.port}/eureka
+mysql:
+  ip: 127.0.0.1
+  port: 3306
+  username: root
+  password: 123456
+redis:
+  host: 127.0.0.1
+  port: 6379
+  password: 123123
+  database: 1

@@ -16,6 +16,8 @@
         <module>spring-cloud-greenwich-gateway</module>
         <module>spring-cloud-greenwich-provider</module>
         <module>spring-cloud-greenwich-feign</module>
+        <module>spring-cloud-greenwich-nacos-config-server</module>
+        <module>spring-cloud-greenwich-nacos-config-client</module>
     </modules>
 
     <parent>

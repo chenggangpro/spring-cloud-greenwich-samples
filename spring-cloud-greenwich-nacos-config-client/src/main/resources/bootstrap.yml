@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: config-client
+  cloud:
+    nacos:
+      config:
+        server-addr: ${nacos.ip}:${nacos.port}
+        file-extension: yaml
+        active-profiles: ${spring.profiles.active}
+info:
+  name: config-client
+#  version: @project.version@
+  profile: ${spring.profiles.active}

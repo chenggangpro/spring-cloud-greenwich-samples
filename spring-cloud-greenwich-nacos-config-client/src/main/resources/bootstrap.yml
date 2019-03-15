@@ -9,7 +9,9 @@ spring:
         server-addr: ${nacos.ip}:${nacos.port}
         file-extension: yaml
         active-profiles: ${spring.profiles.active}
+logging:
+  path: ../logs/${spring.application.name}
 info:
   name: config-client
-#  version: @project.version@
+  version: @project.version@
   profile: ${spring.profiles.active}
